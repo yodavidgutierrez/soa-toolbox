@@ -1,0 +1,84 @@
+
+<div class="ui-g ui-fluid">
+  <div class="ui-g ui-g-12">
+    <p-panel header="Editar Aplicación">
+      <form [formGroup]="form" >
+        <div class="ui-g ui-fluid">
+          <div class="ui-g ui-g-5 ui-sm-5">
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <label for="visualizationName">Nombre </label>
+              </div>
+              <div class="ui-g-12" style="padding-top: 2px">
+                <input pInputText id="visualizationName" formControlName="visualizationName" >
+                <div class="ui-message ui-messages-error" *ngIf="validations.visualizationName">
+                  {{validations.visualizationName}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g ui-g-5 ui-sm-5" >
+            <div class="ui-g form-group" >
+              <div class="ui-g-12" >
+                <label for="Accesslink">Url </label>
+              </div>
+              <div class="ui-g-12" style="padding-top: 2px"  >
+                <input pInputText id="Accesslink" formControlName="Accesslink" >
+                <div class="ui-message ui-messages-error" *ngIf="validations.Accesslink">
+                  {{ validations.Accesslink }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g ui-g-2 ui-sm-2">
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <label for="Accesslink">Aplicación por defecto?</label>
+              </div>
+              <div class="ui-g-12" style="padding-top: 2px"  >
+                <p-checkbox [binary]="true" formControlName="defaultApplication"></p-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g ui-g-3 ui-sm-3">
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <label for="applicationOrder">N&deg; de orden </label>
+              </div>
+              <div class="ui-g-12" style="padding-top: 2px"  >
+                <input pInputText id="applicationOrder" formControlName="applicationOrder" >
+                <div class="ui-message ui-messages-error" *ngIf="validations.applicationOrder">
+                  {{ validations.applicationOrder }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui-g ui-g-1 ui-sm-1"></div>
+          <div class="ui-g ui-g-4 ui-sm-4">
+            <div class="ui-g form-group">
+              <div class="ui-g-12" style="padding-top: 0px"  >
+                <p-fileUpload #uploader chooseLabel="Seleccionar" mode="basic" customUpload="true" *ngIf="!logo"  (uploadHandler)="clean(uploader)" invalidFileSizeMessageSummary="{0}:Ha excedido de 10kb" invalidFileTypeMessageDetail="{0}: Solo puede seleccionar imágenes"
+                              accept="image/*" [maxFileSize]="24000"
+                              (onSelect)="setFiles($event,uploader)"  (onRemove)="removeFiles()"
+
+                >
+                </p-fileUpload>
+                <img src="{{logo}}" style="border:#005C90 2px solid" *ngIf="logo" width="100"/> <p-button icon="pi pi-delete" *ngIf="logo " (click)="removeFiles()"></p-button>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </p-panel>
+
+    <div class="ui-g ui-fluid ui-dialog-footer ui-widget" style="width: calc(100% + 30px); margin: 9px -15px -10px -15px;">
+      <div class="ui-g ui-g-12">
+        <button pButton label="Guardar" icon="pi pi-save" iconPos="left" [disabled]="form.invalid" class="ui-button-info"  type="button" (click)="save()" ></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

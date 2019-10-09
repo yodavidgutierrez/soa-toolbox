@@ -1,0 +1,23 @@
+<p-table [value]="(dependencies$ | async)" [paginator]="true" [rows]="10" (selectionChange)="selectionChange($event)"
+         [selection]="(selectedDependencies$| async)" selectionMode="multiple">
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Dependencia</th>
+      <th><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-dep>
+    <tr [pSelectableRow]="dep">
+      <td>{{dep.nombre}}</td>
+      <td>
+        <div class="ui-g-12" style="position: relative">
+          <div style="position: absolute; width: 100%;height: 100%;z-index: 2"></div>
+          <p-tableCheckbox [value]="dep"></p-tableCheckbox>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+

@@ -1,0 +1,16 @@
+.profileSize {
+    height: 32px !important;
+    width: 32px !important;
+}
+
+.profile-name-white {
+    padding-top: 7px;
+    color: white !important;
+}
+
+@media (max-width: 640px) {
+  .topbar-left{
+    display: none;
+  }
+
+}

@@ -1,0 +1,13 @@
+button[pButton]{
+  width: 120px !important;
+  margin-right: 15px;
+  position: relative;
+  left:calc(100% - 120px);
+  background-color: #005C90 !important;
+  color:#fff !important;
+}
+
+p-dialog p-footer  button[pButton]{
+  background-color: #005C90 !important;
+  color:#fff !important;
+}

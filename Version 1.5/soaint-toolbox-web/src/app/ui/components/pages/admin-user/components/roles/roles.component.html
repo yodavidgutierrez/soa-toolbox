@@ -1,0 +1,42 @@
+<p-blockUI [target]="tabview" [blocked]="isSaving">
+  <svg class="splash-loader" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+    <circle class="splash-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+  </svg>
+</p-blockUI>
+<p-tabView (onChange)="loadRoles($event)" [(activeIndex)]="activeIndex"   #tabview>
+  <p-tabPanel  *ngFor="let app of (applications$| async); let i = index" [selected]="i== activeIndex"  [header]="app.visualizationName"  >
+   <ng-template pTemplate="content" >
+      <p-table [value]="(roles$ | async)" [paginator]="true" [rows]="10" (selectionChange)="selectionChange($event)"
+               selectionMode="multiple" [selection]="(selectedRoles$| async)">
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Rol</th>
+            <th>  <p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rol >
+          <tr [pSelectableRow]="rol">
+            <td>{{rol.name}}</td>
+            <td>
+              <div style="position: relative">
+              <div style="position: absolute; width: 100%;height: 100%;z-index: 2"></div>
+              <p-tableCheckbox [value]="rol"></p-tableCheckbox>
+              </div>
+
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <ng-template [ngIf]="showButtonSave">
+        <div class="control-container">
+          <button pButton type="button" (click)="saveRoles()"  icon="pi pi-save" iconPos="left" label="Guardar"></button>
+        </div>
+
+      </ng-template>
+    </ng-template>
+  </p-tabPanel>
+</p-tabView>
+
+
+

@@ -1,0 +1,14 @@
+.control-container{
+  height: 40px;
+}
+
+.control-container button {
+   float: right;
+  margin: 10px 0;
+}
+
+svg.splash-loader{
+  position: relative;
+  left: calc(50% - 33px);
+  top: 100px;
+}

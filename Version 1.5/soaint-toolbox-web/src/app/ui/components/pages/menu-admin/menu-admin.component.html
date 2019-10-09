@@ -1,0 +1,60 @@
+<p-card header="Administración de aplicaciones">
+  <p-panel  header="Edición de Aplicaciones " [style]="{ border: 'none'}">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12">
+        <div class="ui-sm-12 ui-g-3 ui-lg-4" [formGroup]="form">
+          <div class="ui-g form-group">
+            <div class="ui-g-12">
+              <span class="md-inputfield" style="margin-top: 36px">
+                <input type="text" pInputText id="visualizationName" formControlName="visualizationName">
+                <label for="visualizationName">Nombre Aplicación</label>
+              </span>
+            </div>
+          </div>
+        </div>
+      <div class="ui-sm-12 ui-g-3 ui-lg-4" [formGroup]="form">
+        <div class="ui-g form-group">
+          <div class="ui-g-12" style="margin-top: 36px">
+            <button pButton type="button" label="Buscar" [disabled]="!form.valid"
+                    style="width: 120px; margin-right: 15px; margin-bottom: 10px;float: right" icon="pi pi-search" iconPos="left"
+                    (click)="searchaplicaciones()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </p-panel>
+  <div class="tabla">
+  <p-table [value]="(menus$ | async)" [paginator]="true" [rows]="10">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre </th>
+        <th>Url </th>
+        <th>Acción</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-app>
+      <tr>
+        <td>{{app.visualizationName}}</td>
+        <td>{{app.Accesslink}}</td>
+        <td style="text-align: center">
+          <button pButton type="button" icon="pi pi-edit" iconPos="left" label="Editar Aplicación" (click)="show( app )" ></button>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+  </div>
+</p-card>
+
+
+<p-dialog [(visible)] = "showDialog" (onHide)="hide()"  modal="modal"
+          [responsive]="true" [positionTop]="'50%'" [width]="800" header="Editar Aplicación">
+  <app-aplicaciones [app]="app" (onMenuSave)="searchaplicaciones()"></app-aplicaciones>
+</p-dialog>
+
+
+
+
+

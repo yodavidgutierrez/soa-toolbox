@@ -1,0 +1,71 @@
+
+<!-- 3. Display the application -->
+
+<div class="login-body">
+    <div class="card login-panel ui-fluid">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <img width="200px" src="{{baseUrl}}/assets/layout/images/LOGO_SOAINT_ESP-exp.png">
+            </div>
+            <form *ngIf="!(loading$ | async)"  [formGroup]="form" novalidate>
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                        <input formControlName="username" type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                        <label>Usuario</label>
+                    </span>
+            </div>
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                      <input formControlName="password" type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                      <label>Contraseña</label>
+                  </span>
+            </div>
+            <div class="ui-g-12">
+                <button [disabled]="form.invalid" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" (click)="signIn()">
+                      <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
+                      <span class="ui-button-text ui-c">Entrar</span>
+                  </button>
+                <!-- <button type="button" class="secondary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                      <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-help"></span>
+                      <span class="ui-button-text ui-c">Forgot Password</span>
+                  </button> -->
+            </div>
+        </form>
+        </div>
+
+    </div>
+    <script>
+        UltimaLogin = {
+            addClass: function(element, className) {
+                if (element.classList)
+                    element.classList.add(className);
+                else
+                    element.className += ' ' + className;
+            },
+
+            removeClass: function(element, className) {
+                if (element.classList)
+                    element.classList.remove(className);
+                else
+                    element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        };
+        document.getElementById('user').addEventListener('blur', function() {
+            if (this.value !== '')
+                UltimaLogin.addClass(document.getElementById('user'), 'ui-state-filled');
+            else
+                UltimaLogin.removeClass(document.getElementById('user'), 'ui-state-filled');
+        })
+        document.getElementById('pass').addEventListener('blur', function() {
+            if (this.value !== '')
+                UltimaLogin.addClass(document.getElementById('pass'), 'ui-state-filled');
+            else
+                UltimaLogin.removeClass(document.getElementById('pass'), 'ui-state-filled');
+        })
+    </script>
+
+</div>
+
+ <p-blockUI [blocked]="(loading$ | async)"></p-blockUI>
+
+
